@@ -5,9 +5,9 @@
         <MHeader/>
         <tab/>
         <img v-show="imgShow" class="image-nav" src="https://sias.ustc.edu.cn/_upload/tpl/00/3d/61/template61/res/kdyjy_news.jpg" alt="">
-        <!-- <keep-alive>
+        <keep-alive>
           <router-view/>
-        </keep-alive> -->
+        </keep-alive>
       </div>
     </div>
     <BackTop></BackTop>

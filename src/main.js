@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import {Carousel, CarouselItem, Icon, Page, Alert, Spin, BackTop} from 'iview'
+import {Carousel, CarouselItem, Icon, Page, Alert, Spin, BackTop, Menu, MenuItem, Submenu, MenuGroup, Input} from 'iview'
 import 'iview/dist/styles/iview.css'
 import VueAMap from 'vue-amap'
 
@@ -14,6 +14,11 @@ Vue.component('Page', Page)
 Vue.component('Alert', Alert)
 Vue.component('Spin', Spin)
 Vue.component('BackTop', BackTop)
+Vue.component('Menu', Menu)
+Vue.component('MenuItem', MenuItem)
+Vue.component('Submenu', Submenu)
+Vue.component('MenuGroup', MenuGroup)
+Vue.component('Input', Input)
 
 Vue.use(VueAMap)
 VueAMap.initAMapApiLoader({

@@ -9,6 +9,8 @@ import Training from '@/components/content/Training'
 import Resource from '@/components/content/Resource'
 import Download from '@/components/content/Download'
 import Contact from '@/components/content/Contact'
+import Product from '@/components/content/Product'
+
 import College from '@/components/content/survey/College'
 import Organization from '@/components/content/survey/Organization'
 import Colleges from '@/components/content/survey/Colleges'
@@ -179,6 +181,10 @@ export default new Router({
       path: '/search',
       name: '搜索',
       component: Search
+    }, {
+      path: '/product',
+      name: '产品',
+      component: Product
     }
   ]
 })
