@@ -1,21 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/content/Index'
+import Index22 from '@/components/content/Index22'
 import Article from '@/components/content/Article'
 import Survey from '@/components/content/Survey'
 import News from '@/components/content/News'
-import NewsArticle from '@/components/content/NewsArticle'
-import Company from '@/components/content/Company'
-
-import Product from '@/components/content/Product'
-import Exhibition from '@/components/content/Exhibition'
-import Case from '@/components/content/Case'
-
 import Laboratory from '@/components/content/Laboratory'
 import Training from '@/components/content/Training'
 import Resource from '@/components/content/Resource'
 import Download from '@/components/content/Download'
 import Contact from '@/components/content/Contact'
+import Product from '@/components/content/Product'
 
 import College from '@/components/content/survey/College'
 import Organization from '@/components/content/survey/Organization'
@@ -23,9 +18,9 @@ import Colleges from '@/components/content/survey/Colleges'
 import Regional from '@/components/content/survey/Regional'
 import TalentInfo from '@/components/content/survey/Talent'
 
-// import NewsCollege from '@/components/content/news/College'
-// import Dynamics from '@/components/content/news/Dynamics'
-// import Notice from '@/components/content/news/Notice'
+import NewsCollege from '@/components/content/news/College'
+import Dynamics from '@/components/content/news/Dynamics'
+import Notice from '@/components/content/news/Notice'
 
 import Introduction from '@/components/content/laboratory/Introduction'
 import Research from '@/components/content/laboratory/Research'
@@ -52,6 +47,10 @@ export default new Router({
       path: '/index',
       name: '首页',
       component: Index
+    }, {
+      path: '/index22',
+      name: '首页22',
+      component: Index22
     }, {
       path: '/survey',
       // 研究院概括
@@ -85,19 +84,27 @@ export default new Router({
       ]
     }, {
       path: '/news',
-      // 新闻
+      // 新闻公告
       name: '',
-      component: News
-    }, {
-      path: '/NewsArticle',
-      // 新闻详情
-      name: '',
-      component: NewsArticle
-    }, {
-      path: '/company',
-      // 公司简介
-      name: '',
-      component: Company
+      component: News,
+      children: [
+        {
+          path: '/',
+          redirect: '/news/college'
+        }, {
+          path: 'college',
+          name: '学院动态',
+          component: NewsCollege
+        }, {
+          path: 'dynamics',
+          name: '本院动态',
+          component: Dynamics
+        }, {
+          path: 'notice',
+          name: '通知公告',
+          component: Notice
+        }
+      ]
     }, {
       path: '/laboratory',
       // 联合实验室
@@ -180,17 +187,9 @@ export default new Router({
       name: '搜索',
       component: Search
     }, {
-      path: '/exhibition',
-      name: '产品展示',
-      component: Exhibition
-    }, {
       path: '/product',
       name: '产品',
       component: Product
-    }, {
-      path: '/case',
-      name: '产品案例',
-      component: Case
     }
   ]
 })

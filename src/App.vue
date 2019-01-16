@@ -27,14 +27,14 @@ export default {
     }
   },
   created () {
-    if (this.$route.path === 'index' || this.$route.path === '/index') {
+    if (this.$route.path === '/index' || this.$route.path === '/index22') {
       this.imgShow = false
     } else {
       this.imgShow = true
     }
   },
   updated () {
-    if (this.$route.path === 'index' || this.$route.path === '/index') {
+    if (this.$route.path === '/index' || this.$route.path === '/index22') {
       this.imgShow = false
     } else {
       this.imgShow = true

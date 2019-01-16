@@ -4,26 +4,32 @@
       <router-link tag="div" class="tab-item" to="/index">
         首页
       </router-link>
-      <router-link tag="div" class="tab-item" to="/survey">
-        研究院概括
+      <router-link tag="div" class="tab-item" to="/company">
+        公司简介
       </router-link>
       <router-link tag="div" class="tab-item" to="/news">
         新闻公告
       </router-link>
-      <router-link tag="div" class="tab-item" to="/laboratory">
-        联合实验室
+      <router-link tag="div" class="tab-item" to="/case">
+        产品案例
       </router-link>
-      <router-link tag="div" class="tab-item" to="/training">
+      <router-link tag="div" class="tab-item" to="/exhibition">
+        产品展示
+      </router-link>
+      <router-link tag="div" class="tab-item" to="/product">
+        解决方案
+      </router-link>
+      <!-- <router-link tag="div" class="tab-item" to="/training">
         人才培养
       </router-link>
       <router-link tag="div" class="tab-item" to="/resource">
         公共资源
+      </router-link>-->
+      <router-link tag="div" class="tab-item" to="/contact">
+        加入我们
       </router-link>
       <router-link tag="div" class="tab-item" to="/download">
-        文件下载
-      </router-link>
-      <router-link tag="div" class="tab-item" to="/contact">
-        联系我们
+        下载中心
       </router-link>
     </div>
 </div>

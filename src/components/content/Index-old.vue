@@ -18,7 +18,6 @@
       </Carousel>
     </div>
     <div class="index-news-wra">
-      <!-- 校内新闻 -->
       <div class="index-news-school">
         <div class="index-news-school-tit"><Icon type="ios-paper-outline" size=22 color="#0066CC" /> &nbsp;校内新闻</div>
         <div class="index-news-school-con-wra" ref="conWra">
@@ -31,123 +30,40 @@
           <Icon size=14 color="#666" type="ios-arrow-forward" />
         </div>
       </div>
-      <div class="index-news-content">
-        <img class="index-news-content-image" src="../../common/image/scenery001.jpg">
-        <div class="index-news-content-items-wra">
-          <div class="index-news-c-i-w">
-            <h3 class="index-news-c-i-w-t">公司新闻</h3>
-            <a class="index-news-c-i-w-m">更多</a>
+      <ul class="index-news-data">
+        <li class="index-news-data-item" v-for="(item, index) in noticeBulletin" :key="index" @click="pushArtilce(item.id)">
+          <div class="index-news-data-detail">
+            <span>{{item.createDate.substr(8, 2)}}</span>
+            <span>{{item.createDate.substr(0, 7)}}</span>
           </div>
-          <ul class="index-news-content-items">
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等</span>
-              <i>2018-12-24</i>
-            </li>
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等</span>
-              <i>2018-12-24</i>
-            </li>
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等等等</span>
-              <i>2018-12-24</i>
-            </li>
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等等等等等</span>
-              <i>2018-12-24</i>
-            </li>
-          </ul>
-        </div>
-        <div class="index-news-content-items-wra">
-          <div class="index-news-c-i-w">
-            <h3 class="index-news-c-i-w-t">公司新闻</h3>
-            <a class="index-news-c-i-w-m">更多</a>
+          <div class="index-news-data-con">
+            <span class="title">{{item.title}}</span>
+            <span>{{item.description}}</span>
           </div>
-          <ul class="index-news-content-items">
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等</span>
-              <i>2018-12-24</i>
-            </li>
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等</span>
-              <i>2018-12-24</i>
-            </li>
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等等等</span>
-              <i>2018-12-24</i>
-            </li>
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等等等等等</span>
-              <i>2018-12-24</i>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- 相关产品 -->
-    <div class="index-product">
-      <div class="index-product-head">
-        <h3 class="index-product-tit">相关产品</h3>
-        <a class="index-product-more">查看详情</a>
-      </div>
-      <div class="index-product-body">
-        <div class="index-product-banner">
-          <img src="../../common/image/scenery002.jpg">
-        </div>
-        <ul class="index-product-lists">
-          <li class="index-product-list">
-            <img class="index-product-list-img" src="../../common/image/scenery003.jpg" >
-            <h5>1234项目</h5>
-            <span>这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍...</span>
-          </li>
-          <li class="index-product-list">
-            <img class="index-product-list-img" src="../../common/image/scenery003.jpg" >
-            <h5>1234项目</h5>
-            <span>这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍...</span>
-          </li>
-          <li class="index-product-list">
-            <img class="index-product-list-img" src="../../common/image/scenery003.jpg" >
-            <h5>1234项目</h5>
-            <span>这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍...</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!-- 项目案例 -->
-    <div class="index-project">
-      <div class="index-project-head">
-        <div class="index-project-border">
-          <span class="index-project-title">项目案例</span>
-        </div>
-      </div>
-      <ul class="index-project-body">
-        <li class="index-project-item">
-          <img src="../../common/image/scenery003.jpg" alt="">
-          <h5>123项目</h5>
-          <span>项目简介<br>项目简介项目简介项目简介项目简介</span>
-          <a>进一步了解</a>
         </li>
-        <li class="index-project-item">
-          <img src="../../common/image/scenery003.jpg" alt="">
-          <h5>123项目</h5>
-          <span>项目简介<br>项目简介项目简介项目简介项目简介</span>
-          <a>进一步了解</a>
+        <!-- <li class="index-news-data-item">
+          <div class="index-news-data-detail">
+            <span>25</span>
+            <span>2018-09</span>
+          </div>
+          <div class="index-news-data-con">
+            <span>随机数研究新突破：中国科大在国...</span>
+            <span>近日，中国科学技术大学教授潘建伟及其同事张强、范靖云、马雄峰等与中科院上海微系统与信息技术研究所和日...</span>
+          </div>
         </li>
-        <li class="index-project-item">
-          <img src="../../common/image/scenery003.jpg" alt="">
-          <h5>123项目</h5>
-          <span>项目简介<br>项目简介项目简介项目简介项目简介</span>
-          <a>进一步了解</a>
-        </li>
-        <li class="index-project-item">
-          <img src="../../common/image/scenery003.jpg" alt="">
-          <h5>123项目</h5>
-          <span>项目简介<br>项目简介项目简介项目简介项目简介</span>
-          <a>进一步了解</a>
-        </li>
+        <li class="index-news-data-item">
+          <div class="index-news-data-detail">
+            <span>25</span>
+            <span>2018-09</span>
+          </div>
+          <div class="index-news-data-con">
+            <span>常务副校长潘建伟荣获“中国侨界...</span>
+            <span>第十次全国归侨侨眷代表大会8月29日上午在北京人民大会堂开幕。习近平、李克强、栗战书、汪洋、王沪宁、韩...</span>
+          </div>
+        </li> -->
       </ul>
     </div>
-    <!-- list tag -->
-    <!-- <ul class="index-news-nav">
+    <ul class="index-news-nav">
       <li class="index-news-nav-item">
         <div class="index-news-nav-title">
           <h4 class="index-news-nav-tit"><Icon type="md-pricetags" size=20 />&nbsp;本院快讯</h4>
@@ -158,6 +74,10 @@
         </div>
         <div class="index-news-nav-notices">
           <a href="javascript:;" class="index-news-nav-notice" v-for="(item, index) in ourNews" :key = "index" @click="pushArtilce(item.id)">{{item.title}}</a>
+          <!-- <a href="javascript:;" class="index-news-nav-notice">·关于2018年国庆节放假的通知</a>
+          <a href="javascript:;" class="index-news-nav-notice">·2018年院工会系列活动</a>
+          <a href="javascript:;" class="index-news-nav-notice">·2018年院工会系列活动</a>
+          <a href="javascript:;" class="index-news-nav-notice">·2018年院工会系列活动</a> -->
         </div>
       </li>
       <li class="index-news-nav-item">
@@ -170,6 +90,10 @@
         </div>
         <div class="index-news-nav-notices">
           <a href="javascript:;" class="index-news-nav-notice" v-for="(item, index) in publicResource" :key = "index" @click="pushArtilce(item.id)">{{item.title}}</a>
+          <!-- <a href="javascript:;" class="index-news-nav-notice">·关于2018年国庆节放假的通知</a>
+          <a href="javascript:;" class="index-news-nav-notice">·2018年院工会系列活动</a>
+          <a href="javascript:;" class="index-news-nav-notice">·2018年院工会系列活动</a>
+          <a href="javascript:;" class="index-news-nav-notice">·2018年院工会系列活动</a> -->
         </div>
       </li>
       <li class="index-news-nav-item">
@@ -182,11 +106,14 @@
         </div>
         <div class="index-news-nav-notices">
           <a href="javascript:;" class="index-news-nav-notice" v-for="(item, index) in personnelTrain" :key = "index" @click="pushArtilce(item.id)">{{item.title}}</a>
+          <!-- <a href="javascript:;" class="index-news-nav-notice">·关于2018年国庆节放假的通知</a>
+          <a href="javascript:;" class="index-news-nav-notice">·2018年院工会系列活动</a>
+          <a href="javascript:;" class="index-news-nav-notice">·2018年院工会系列活动</a>
+          <a href="javascript:;" class="index-news-nav-notice">·2018年院工会系列活动</a> -->
         </div>
       </li>
-    </ul> -->
-    <!-- 学院风光 -->
-    <!-- <div class="index-news-scenery">
+    </ul>
+    <div class="index-news-scenery">
       <ul class="index-news-scenery-hd">
         <li class="index-news-scenery-tit index-news-scenery-active"><Icon type="md-school" size=20 />&nbsp;学院风光</li>
       </ul>
@@ -195,9 +122,27 @@
         <li class="index-news-scenery-content" v-for="(item, index) in collegeScenery" :key="index">
           <img :src="item.picture" alt="">
         </li>
+        <!-- <li class="index-news-scenery-content">
+          <img src="../../common/image/scenery002.jpg" alt="">
+        </li>
+        <li class="index-news-scenery-content">
+          <img src="../../common/image/scenery003.jpg" alt="">
+        </li>
+        <li class="index-news-scenery-content">
+          <img src="../../common/image/scenery001.jpg" alt="">
+        </li>
+        <li class="index-news-scenery-content">
+          <img src="../../common/image/scenery002.jpg" alt="">
+        </li>
+        <li class="index-news-scenery-content">
+          <img src="../../common/image/scenery003.jpg" alt="">
+        </li>
+        <li class="index-news-scenery-content">
+          <img src="../../common/image/scenery001.jpg" alt="">
+        </li> -->
         </marquee>
       </ul>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -550,216 +495,7 @@ export default {
   color: #2D323B;
   line-height: 22px;
 }
-/* new */
-.index-news-content{
-  width: 100%;
-  padding: 20px;
-  display: flex;
-}
-.index-news-content-image{
-  flex: 0 0 26%;
-  height: 210px;
-}
-.index-news-content-items-wra{
-  flex: 1;
-  height: 210px;
-  padding: 0 16px;
-}
-.index-news-c-i-w{
-  height: 42px;
-  font-size: 0;
-}
-.index-news-c-i-w-t{
-  display: inline-block;
-  width: 80%;
-  height: 42px;
-  line-height: 42px;
-  color: #0066CC;
-  font-size: 18px;
-  font-weight: 600;
-}
-.index-news-c-i-w-m{
-  display: inline-block;
-  height: 42px;
-  line-height: 42px;
-  color: #0066CC;
-  font-size: 14px;
-}
-.index-news-content-items{
-  width: 100%;
-  padding-top: 12px;
-}
-.index-news-content-item{
-  height: 40px;
-  font-size: 0;
-  cursor: pointer;
-}
-.index-news-content-item span{
-  display: inline-block;
-  width: 70%;
-  height: 40px;
-  line-height: 40px;
-  font-size: 14px;
-  color: #333;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  vertical-align: top;
-}
-.index-news-content-item:hover span, .index-news-content-item:hover i{
-  color: #0066CC;
-}
-.index-news-content-item i{
-  display: inline-block;
-  width: 30%;
-  height: 40px;
-  line-height: 40px;
-  font-size: 12px;
-  text-align: right;
-  color: #333;
-}
-.index-product{
-  width: 100%;
-  margin-top: 14px;
-  padding: 10px 20px 20px 20px;
-  background: #fff;
-  box-shadow: 2px 2px 4px 0px #999;
-}
-.index-product-head{
-  display: flex;
-  height: 40px;
-}
-.index-product-tit{
-  flex: 1;
-  height: 40px;
-  line-height: 40px;
-  color: #0066CC;
-  font-size: 18px;
-  font-weight: 600;
-}
-.index-product-more{
-  flex: 0 0 100px;
-  height: 30px;
-  line-height: 30px;
-  margin-top: 5px;
-  text-align: center;
-  background: #333;
-  color: #fff;
-  font-size: 12px;
-}
-.index-product-body{
-  padding-top: 10px;
-  display: flex;
-}
-.index-product-banner{
-  flex: 0 0 240px;
-  height: 200px;
-}
-.index-product-banner img{
-  display: block;
-  width: 100%;
-  height: 200px;
-}
-.index-product-lists{
-  flex: 1;
-  padding-left: 10px;
-  font-size: 0;
-}
-.index-product-list{
-  display: inline-block;
-  width: 30%;
-  margin-left: 5%;
-}
-.index-product-list:nth-child(1){
-  margin-left: 0;
-}
-.index-product-list-img{
-  display: block;
-  width: 100%;
-  height: 100px;
-}
-.index-product-list h5{
-  height: 30px;
-  line-height: 30px;
-  font-size: 14px;
-  color: #333;
-}
-.index-product-list span{
-  line-height: 20px;
-  font-size: 12px;
-  color: #666;
-}
-.index-project{
-  width: 100%;
-  margin-top: 14px;
-  padding: 30px 20px 20px 20px;
-  background: #fff;
-  box-shadow: 2px 2px 4px 0px #999;
-}
-.index-project-head{
-  width: 100%;
-  padding-bottom: 20px;
-}
-.index-project-border{
-  position: relative;
-  width: 120px;
-  height: 30px;
-  margin: 0 auto;
-  border: 2px solid #fbcc0e;
-}
-.index-project-title{
-  position: absolute;
-  top: -13px;
-  left: 50%;
-  display: block;
-  width: 90px;
-  text-align: center;
-  background: #fff;
-  font-size: 16px;
-  color: #333;
-  font-weight: 600;
-  transform: translateX(-50%);
-}
-.index-project-body{
-  width: 100%;
-  font-size: 0;
-}
-.index-project-item{
-  display: inline-block;
-  width: 23%;
-  margin-left: 2.6%;
-}
-.index-project-item:nth-child(1){
-  margin-left: 0;
-}
-.index-project-item img{
-  display: block;
-  width: 100%;
-  height: 160px;
-}
-.index-project-item h5{
-  height: 30px;
-  line-height: 30px;
-  padding: 0 10px;
-  font-size: 14px;
-  color: #333;
-  font-weight: 500;
-}
-.index-project-item span{
-  display: block;
-  padding: 0 10px;
-  line-height: 20px;
-  font-size: 12px;
-  color: #666;
-}
-.index-project-item a{
-  display: block;
-  padding: 0 10px;
-  margin-top: 20px;
-  font-size: 14px;
-}
-/* 可以删除 */
-/* .index-news-nav{
+.index-news-nav{
   display: flex;
   margin-top: 10px;
   justify-content: space-between;
@@ -849,5 +585,5 @@ export default {
   width: 280px;
   height: 180px;
   overflow: hidden;
-} */
+}
 </style>

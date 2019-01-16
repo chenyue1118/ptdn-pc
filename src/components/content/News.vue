@@ -1,69 +1,109 @@
 <template lang="html">
-  <div class="news">
-    <div class="news-nav-wra">
-      <h3 class="news-nav-tit">新闻公告</h3>
-      <router-link tag="div" to="/news/college" class="news-nav-item">学院动态</router-link>
-      <router-link tag="div" to="/news/dynamics" class="news-nav-item">本院动态</router-link>
-      <router-link tag="div" to="/news/notice" class="news-nav-item">通知公告</router-link>
-    </div>
-    <div class="news-content-wra">
-      <keep-alive>
-         <router-view></router-view>
-      </keep-alive>
-    </div>
+  <div class="new_">
+    <ul class="new-head">
+      <li class="new-head-item active">全部</li>
+      <li class="new-head-item">公司新闻</li>
+      <li class="new-head-item">行业资讯</li>
+    </ul>
+    <ul class="new-body">
+      <li class="new-body-item" @click="newArticle">
+        <div class="new-body-item-img">
+          <img src="../../common/image/scenery002.jpg">
+        </div>
+        <div class="new-body-item-con">
+          <h5>中国科学科学大学北京研究院北京研究院</h5>
+          <span>这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介</span>
+          <i>2018-12-24</i>
+        </div>
+      </li>
+      <li class="new-body-item">
+        <div class="new-body-item-img">
+          <img src="../../common/image/scenery002.jpg">
+        </div>
+        <div class="new-body-item-con">
+          <h5>中国科学科学大学北京研究院北京研究院</h5>
+          <span>这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介这个是简介</span>
+          <i>2018-12-24</i>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
+  methods: {
+    newArticle () {
+      this.$router.push({
+        path: '/NewsArticle'
+      })
+    }
+  }
 }
 </script>
 
 <style lang="css" scoped>
-.news{
+.new_{
   width: 1050px;
   margin: 0 auto;
-  padding-top: 24px;
-  padding-bottom: 26px;
-  font-size: 0;
-}
-.news-nav-wra{
-  display: inline-block;
-  width: 280px;
+  padding: 20px;
   background: #fff;
-  padding-bottom: 120px;
 }
-.news-nav-tit{
-  margin-bottom: 22px;
-  height: 50px;
-  line-height: 50px;
+.new-head{
+  width: 300px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+  font-size: 0;
   text-align: center;
-  background: #0066CC;
-  font-size: 16px;
-  color: #FFFFFF;
 }
-.news-nav-item{
-  display: block;
-  width: 240px;
-  height: 50px;
-  margin: 0 auto 14px auto;
-  line-height: 50px;
-  background: rgba(144, 153 ,171, 0.16);
+.new-head-item{
+  display: inline-block;
+  padding-right: 14px;
   font-size: 14px;
-  color: #2D323B;
-  text-align: center;
   cursor: pointer;
 }
-.router-link-active, .router-link-exact-active{
+.new-head .active{
   color: #0066CC;
 }
-.news-content-wra{
+.new-body{
+  width: 100%;
+  padding-bottom: 20px;
+}
+.new-body-item{
+  display: flex;
+  width: 100%;
+  padding-bottom: 30px;
+  cursor: pointer;
+}
+.new-body-item-img{
+  flex: 0 0 250px;
+  padding-right: 20px;
+}
+.new-body-item-img img{
   display: inline-block;
-  width: 750px;
-  margin-left: 20px;
-  padding: 0 15px 92px 28px;
-  vertical-align: top;
-  background: #FFFFFF;
-  overflow: hidden;
+  width: 100%;
+  height: 180px;
+}
+.new-body-item-con{
+  flex: 1;
+  padding-right: 10px;
+}
+.new-body-item-con h5{
+  height: 40px;
+  font-size: 16px;
+}
+.new-body-item-con span{
+  display: block;
+  height: 110px;
+  line-height: 20px;
+  font-size: 12px;
+  color: #666;
+}
+.new-body-item-con i{
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  color: #444;
 }
 </style>

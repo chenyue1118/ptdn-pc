@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="product">
-    <h3 class="pro-title">解决方案</h3>
+    <h3 class="pro-title">产品展示</h3>
     <div class="pro-nav">
       <Menu mode="horizontal" theme="light" active-name="0">
           <MenuItem name="0">
