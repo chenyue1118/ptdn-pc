@@ -7,16 +7,16 @@
             全部
           </MenuItem>
           <MenuItem name="1">
-            内容管理
+            智慧农业
           </MenuItem>
           <MenuItem name="2">
-            用户管理
+            智慧农业温棚
           </MenuItem>
           <MenuItem name="3">
-            啊啊啊啊
+            智慧农业大田
           </MenuItem>
           <MenuItem name="4">
-              综合设置
+            智慧农业渔业
           </MenuItem>
       </Menu>
     </div>

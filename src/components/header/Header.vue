@@ -3,17 +3,13 @@
     <div class="header-wra">
        <div class="header-logo"></div>
        <div class="header-con">
-         <div class="header-time">
-           <span>{{SpecificDate}}</span>
-           <span>{{timeWeek}}</span>
-           <span>{{timeDs}}</span>
+         <div class="header-con-w">
+           <i></i>
+           <span>智慧农业物联网平台</span>
          </div>
-         <div class="header-search">
-           <input class="header-sea" type="text" name="search" v-model="searchCon" placeholder="请输入关键字" @keyup.enter="search"/>
-           <!-- <span class="header-sea-btn" @click="search"></span> -->
-           <div class="header-sea-wra"  @click="search">
-             <Icon size="24" color="#8e8e93" type="md-search" />
-           </div>
+         <div class="header-con-k">
+           <i></i>
+           <span>智慧农业开放平台</span>
          </div>
        </div>
     </div>
@@ -68,32 +64,6 @@ export default {
           id: this.searchCon
         }
       })
-      // let Info = qs.stringify({
-      //   'method': 'articleList',
-      //   'search_type': '',
-      //   'search_title': this.searchCon,
-      //   'pageSize': 10,
-      //   'pageNo': 1
-      // })
-      // axios(`${APIYRL}/articleInfo.do`, {
-      //   method: 'POST',
-      //   data: Info
-      // }).then(response => {
-      //   if (response.data.code === 0) {
-      //     if (response.data.result.data.length > 0) {
-      //       // this.$router.push({
-      //       //   path: '/searchList',
-      //       //   query: {
-      //       //     id: this.searchCon
-      //       //   }
-      //       // })
-      //     } else {
-      //       Message.info('暂无数据')
-      //     }
-      //   } else {
-      //     Message.info(response.data.msg || '查询出错')
-      //   }
-      // })
     }
   }
 }
@@ -124,57 +94,36 @@ export default {
 }
 .header-con{
   display: inline-block;
-  padding-left: 300px;
+  height: 70px;
+  padding-left: 150px;
+  font-size: 0;
 }
-.header-time{
-  display: flex;
-  justify-content: space-between;
-  width: 246px;
+.header-con-w, .header-con-k{
+  display: inline-block;
   height: 30px;
-  line-height: 20px;
-  font-size: 12px;
-  color: #999;
+  font-size: 0;
 }
-.header-search{
-  width: 246px;
-  height: 32px;
-  background: #fff;
-  border-radius: 4px;
-  padding-right: 10px;
-  padding-left: 16px;
-  background: #f8f9fa;
+.header-con-k{
+  padding-left: 20px;
 }
-.header-sea{
+.header-con-w i, .header-con-k i{
   display: inline-block;
-  width: 188px;
-  height: 32px;
-  padding: 0;
-  line-height: 32px;
-  font-size: 12px;
-  color: #2D323B;
-  border: none;
-}
-.header-sea-btn{
-  display: inline-block;
-  width: 20px;
-  height: 32px;
-  background: url(../../common/image/icon-search.png) no-repeat center;
-  background-size: 20px 20px;
-  vertical-align: top;
-  cursor: pointer;
-}
-.header-sea-wra{
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
+  width: 25px;
+  height: 30px;
+  background: url(../../common/image/icon-nav-le.png) no-repeat center;
+  background-size: 80%;
   vertical-align: top;
 }
-.header-sea-wra i{
-  display: block;
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-  text-align: center;
+.header-con-k i{
+  background: url(../../common/image/icon-nav-ri.png) no-repeat center;
+  background-size: 80%;
+}
+.header-con-w span, .header-con-k span{
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  color: #fff;
+  padding-left: 12px;
 }
 </style>

@@ -3,21 +3,21 @@
     <h3 class="pro-title">产品展示</h3>
     <div class="pro-nav">
       <Menu mode="horizontal" theme="light" active-name="0">
-          <MenuItem name="0">
-            全部
-          </MenuItem>
-          <MenuItem name="1">
-            内容管理
-          </MenuItem>
-          <MenuItem name="2">
-            用户管理
-          </MenuItem>
-          <MenuItem name="3">
-            啊啊啊啊
-          </MenuItem>
-          <MenuItem name="4">
-              综合设置
-          </MenuItem>
+        <MenuItem name="0">
+          全部
+        </MenuItem>
+        <MenuItem name="1">
+          智慧农业
+        </MenuItem>
+        <MenuItem name="2">
+          智慧农业温棚
+        </MenuItem>
+        <MenuItem name="3">
+          智慧农业大田
+        </MenuItem>
+        <MenuItem name="4">
+          智慧农业渔业
+        </MenuItem>
       </Menu>
     </div>
     <div class="pro-search">

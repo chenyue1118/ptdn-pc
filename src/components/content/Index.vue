@@ -20,66 +20,74 @@
     <div class="index-news-wra">
       <!-- 校内新闻 -->
       <div class="index-news-school">
-        <div class="index-news-school-tit"><Icon type="ios-paper-outline" size=22 color="#0066CC" /> &nbsp;校内新闻</div>
+        <div class="index-news-school-tit"><Icon type="ios-paper-outline" size=22 color="#0066CC" /> &nbsp;公司新闻</div>
         <div class="index-news-school-con-wra" ref="conWra">
           <marquee align="left" ref="marqueeX" @mouseout="marqueeMouseout(1)" @mouseover="marqueeMouseenter(1)">
             <a class="index-news-school-con" href="javascript:;" v-for="(item, index) in listData" :key = "index" @click="pushArtilce(item.id)">{{item.title}}</a>
           </marquee>
         </div>
-        <div class="index-news-school-more" @click="pushTo(1)">
+        <div class="index-news-school-more">
           <span>更多</span>
           <Icon size=14 color="#666" type="ios-arrow-forward" />
         </div>
       </div>
       <div class="index-news-content">
-        <img class="index-news-content-image" src="../../common/image/scenery001.jpg">
-        <div class="index-news-content-items-wra">
-          <div class="index-news-c-i-w">
-            <h3 class="index-news-c-i-w-t">公司新闻</h3>
-            <a class="index-news-c-i-w-m">更多</a>
+        <div class="index-news-content-w">
+          <img class="index-news-content-image" src="../../common/image/scenery001.jpg">
+          <div class="index-news-content-items-wra">
+            <div class="index-news-c-i-w">
+              <h3 class="index-news-c-i-w-t">公司新闻</h3>
+              <div class="index-news-c-i-w-m" @click="pushTo(21)">
+                <a>更多</a>
+                <Icon size=14 color="#666" type="ios-arrow-forward" />
+              </div>
+            </div>
+            <ul class="index-news-content-items">
+              <li class="index-news-content-item" v-for="(item, index) in listData" :key="index" v-if="index < 4">
+                <span>{{item.title}}</span>
+                <i>{{item.updateDate.substr(0, 10)}}</i>
+              </li>
+              <!-- <li class="index-news-content-item">
+                <span>研究院学术资料等等</span>
+                <i>2018-12-24</i>
+              </li>
+              <li class="index-news-content-item">
+                <span>研究院学术资料等等等等</span>
+                <i>2018-12-24</i>
+              </li>
+              <li class="index-news-content-item">
+                <span>研究院学术资料等等等等等等</span>
+                <i>2018-12-24</i>
+              </li> -->
+            </ul>
           </div>
-          <ul class="index-news-content-items">
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等</span>
-              <i>2018-12-24</i>
-            </li>
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等</span>
-              <i>2018-12-24</i>
-            </li>
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等等等</span>
-              <i>2018-12-24</i>
-            </li>
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等等等等等</span>
-              <i>2018-12-24</i>
-            </li>
-          </ul>
-        </div>
-        <div class="index-news-content-items-wra">
-          <div class="index-news-c-i-w">
-            <h3 class="index-news-c-i-w-t">公司新闻</h3>
-            <a class="index-news-c-i-w-m">更多</a>
+          <div class="index-news-content-items-wra"  @click="pushTo(22)">
+            <div class="index-news-c-i-w">
+              <h3 class="index-news-c-i-w-t">行业新闻</h3>
+              <div class="index-news-c-i-w-m">
+                <a>更多</a>
+                <Icon size=14 color="#666" type="ios-arrow-forward" />
+              </div>
+            </div>
+            <ul class="index-news-content-items">
+              <li class="index-news-content-item" v-for="(item, index) in industry" :key="index" v-if="index < 4">
+                <span>{{item.title}}</span>
+                <i>{{item.updateDate.substr(0, 10)}}</i>
+              </li>
+              <!-- <li class="index-news-content-item">
+                <span>研究院学术资料等等</span>
+                <i>2018-12-24</i>
+              </li>
+              <li class="index-news-content-item">
+                <span>研究院学术资料等等等等</span>
+                <i>2018-12-24</i>
+              </li>
+              <li class="index-news-content-item">
+                <span>研究院学术资料等等等等等等</span>
+                <i>2018-12-24</i>
+              </li> -->
+            </ul>
           </div>
-          <ul class="index-news-content-items">
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等</span>
-              <i>2018-12-24</i>
-            </li>
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等</span>
-              <i>2018-12-24</i>
-            </li>
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等等等</span>
-              <i>2018-12-24</i>
-            </li>
-            <li class="index-news-content-item">
-              <span>研究院学术资料等等等等等等</span>
-              <i>2018-12-24</i>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
@@ -206,7 +214,7 @@ import axios from 'axios'
 import qs from 'qs'
 import Marquee from 'vue-marquee'
 import { Message } from 'iview'
-import { APIYRL } from '@/common/api/api'
+// import { APIYRL } from '@/common/api/api'
 export default {
   data () {
     return {
@@ -222,38 +230,26 @@ export default {
       },
       // banner 图片
       bannerArr: [],
-      // 校内新闻
+      // 公司新闻
       listData: [],
-      // 通知公告
-      noticeBulletin: [],
-      // 本院快讯
-      ourNews: [],
-      // 公共资源
-      publicResource: [],
-      // 人才培养
-      personnelTrain: [],
-      // 学院风光
-      collegeScenery: []
+      // 行业新闻
+      industry: []
     }
   },
   created () {
     setTimeout(() => {
       this._getBanner()
       this._getList()
-      this._getNoticeBulletin()
-      this._getOurNews()
-      this._getPublicResource()
-      this._getPersonnelTrain()
-      this._getCollegeScenery()
+      this._getIndustry()
     }, 20)
   },
   methods: {
     _getBanner () {
       let articleInfo = qs.stringify({
-        'method': 'showRollingPicture',
         'rollingType': 1
       })
-      axios(`${APIYRL}/rolling.do?method=showRollingPicture`, {
+      // axios(`${APIYRL}/rolling.do?method=showRollingPicture`, {
+      axios(`http://139.129.203.44:8680/rolling.do?method=showRollingPicture`, {
         method: 'GET',
         data: articleInfo
       }).then(response => {
@@ -265,112 +261,38 @@ export default {
       })
     },
     _getList () {
-      let newsInfo = qs.stringify({
-        'method': 'articleListNumber',
-        'search_type': 21,
-        'search_number': 10
-      })
-      axios(`${APIYRL}/articleInfo.do`, {
-        method: 'POST',
-        data: newsInfo
+      // axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=21&pageSize=10&pageNo=1`, {
+      axios(`http://139.129.203.44:8680/articleInfo.do?method=articleList&search_type=21&pageSize=10&pageNo=1`, {
+        method: 'GET'
       }).then(response => {
         if (response.data.code === 0) {
-          this.listData = response.data.result
+          this.listData = response.data.result.data
         } else {
           Message.info('查询失败')
         }
       })
     },
-    _getNoticeBulletin () {
-      let newsInfo = qs.stringify({
-        'method': 'articleListNumber',
-        'search_type': 23,
-        'search_number': 3
-      })
-      axios(`${APIYRL}/articleInfo.do`, {
-        method: 'POST',
-        data: newsInfo
+    _getIndustry () {
+      // axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=21&pageSize=10&pageNo=1`, {
+      axios(`http://139.129.203.44:8680/articleInfo.do?method=articleList&search_type=22&pageSize=10&pageNo=1`, {
+        method: 'GET'
       }).then(response => {
         if (response.data.code === 0) {
-          this.noticeBulletin = response.data.result
-        } else {
-          Message.info('查询失败')
-        }
-      })
-    },
-    _getOurNews () {
-      let newsInfo = qs.stringify({
-        'method': 'articleListNumber',
-        'search_type': 22,
-        'search_number': 4
-      })
-      axios(`${APIYRL}/articleInfo.do`, {
-        method: 'POST',
-        data: newsInfo
-      }).then(response => {
-        if (response.data.code === 0) {
-          this.ourNews = response.data.result
-        } else {
-          Message.info('查询失败')
-        }
-      })
-    },
-    _getPublicResource () {
-      let newsInfo = qs.stringify({
-        'method': 'articleListNumber',
-        'search_type': 51,
-        'search_number': 4
-      })
-      axios(`${APIYRL}/articleInfo.do`, {
-        method: 'POST',
-        data: newsInfo
-      }).then(response => {
-        if (response.data.code === 0) {
-          this.publicResource = response.data.result
-        } else {
-          Message.info('查询失败')
-        }
-      })
-    },
-    _getPersonnelTrain () {
-      let newsInfo = qs.stringify({
-        'method': 'articleListNumber',
-        'search_type': 42,
-        'search_number': 4
-      })
-      axios(`${APIYRL}/articleInfo.do`, {
-        method: 'POST',
-        data: newsInfo
-      }).then(response => {
-        if (response.data.code === 0) {
-          this.personnelTrain = response.data.result
-        } else {
-          Message.info('查询失败')
-        }
-      })
-    },
-    _getCollegeScenery () {
-      let articleInfo = qs.stringify({
-        'method': 'showRollingPicture',
-        'rollingType': 2
-      })
-      axios(`${APIYRL}/rolling.do`, {
-        method: 'POST',
-        data: articleInfo
-      }).then(response => {
-        if (response.data.code === 0) {
-          this.collegeScenery = response.data.result.concat(response.data.result)
+          this.industry = response.data.result.data
         } else {
           Message.info('查询失败')
         }
       })
     },
     pushTo (index) {
-      if (index === 1) {
+      if (index === 21 || index === 22) {
         this.$router.push({
-          path: '/news/college'
+          path: '/news',
+          query: {
+            id: index
+          }
         })
-      } else if (index === 2) {
+      } else if (index === 22) {
         this.$router.push({
           path: '/news/dynamics'
         })
@@ -384,14 +306,117 @@ export default {
         })
       }
     },
-    pushArtilce (id) {
-      this.$router.push({
-        path: '/article',
-        query: {
-          id: id
-        }
-      })
-    },
+    // _getNoticeBulletin () {
+    //   let newsInfo = qs.stringify({
+    //     'method': 'articleListNumber',
+    //     'search_type': 23,
+    //     'search_number': 3
+    //   })
+    //   axios(`${APIYRL}/articleInfo.do`, {
+    //     method: 'POST',
+    //     data: newsInfo
+    //   }).then(response => {
+    //     if (response.data.code === 0) {
+    //       this.noticeBulletin = response.data.result
+    //     } else {
+    //       Message.info('查询失败')
+    //     }
+    //   })
+    // },
+    // _getOurNews () {
+    //   let newsInfo = qs.stringify({
+    //     'method': 'articleListNumber',
+    //     'search_type': 22,
+    //     'search_number': 4
+    //   })
+    //   axios(`${APIYRL}/articleInfo.do`, {
+    //     method: 'POST',
+    //     data: newsInfo
+    //   }).then(response => {
+    //     if (response.data.code === 0) {
+    //       this.ourNews = response.data.result
+    //     } else {
+    //       Message.info('查询失败')
+    //     }
+    //   })
+    // },
+    // _getPublicResource () {
+    //   let newsInfo = qs.stringify({
+    //     'method': 'articleListNumber',
+    //     'search_type': 51,
+    //     'search_number': 4
+    //   })
+    //   axios(`${APIYRL}/articleInfo.do`, {
+    //     method: 'POST',
+    //     data: newsInfo
+    //   }).then(response => {
+    //     if (response.data.code === 0) {
+    //       this.publicResource = response.data.result
+    //     } else {
+    //       Message.info('查询失败')
+    //     }
+    //   })
+    // },
+    // _getPersonnelTrain () {
+    //   let newsInfo = qs.stringify({
+    //     'method': 'articleListNumber',
+    //     'search_type': 42,
+    //     'search_number': 4
+    //   })
+    //   axios(`${APIYRL}/articleInfo.do`, {
+    //     method: 'POST',
+    //     data: newsInfo
+    //   }).then(response => {
+    //     if (response.data.code === 0) {
+    //       this.personnelTrain = response.data.result
+    //     } else {
+    //       Message.info('查询失败')
+    //     }
+    //   })
+    // },
+    // _getCollegeScenery () {
+    //   let articleInfo = qs.stringify({
+    //     'method': 'showRollingPicture',
+    //     'rollingType': 2
+    //   })
+    //   axios(`${APIYRL}/rolling.do`, {
+    //     method: 'POST',
+    //     data: articleInfo
+    //   }).then(response => {
+    //     if (response.data.code === 0) {
+    //       this.collegeScenery = response.data.result.concat(response.data.result)
+    //     } else {
+    //       Message.info('查询失败')
+    //     }
+    //   })
+    // },
+    // pushTo (index) {
+    //   if (index === 1) {
+    //     this.$router.push({
+    //       path: '/news/college'
+    //     })
+    //   } else if (index === 2) {
+    //     this.$router.push({
+    //       path: '/news/dynamics'
+    //     })
+    //   } else if (index === 3) {
+    //     this.$router.push({
+    //       path: '/resource/college'
+    //     })
+    //   } else if (index === 4) {
+    //     this.$router.push({
+    //       path: '/training/enrolment'
+    //     })
+    //   }
+    // },
+    // pushArtilce (id) {
+    //   this.$router.push({
+    //     path: '/article',
+    //     query: {
+    //       id: id
+    //     }
+    //   })
+    // },
     marqueeMouseenter (index) {
       if (index === 2) {
         this.$refs.marqueeCon.stop()
@@ -554,16 +579,22 @@ export default {
 .index-news-content{
   width: 100%;
   padding: 20px;
-  display: flex;
+}
+.index-news-content-w{
+  width: 100%;
+  font-size: 0;
 }
 .index-news-content-image{
-  flex: 0 0 26%;
+  display: inline-block;
+  width: 26%;
   height: 210px;
 }
 .index-news-content-items-wra{
-  flex: 1;
+  display: inline-block;
+  width: 37%;
   height: 210px;
   padding: 0 16px;
+  vertical-align: top;
 }
 .index-news-c-i-w{
   height: 42px;
@@ -577,13 +608,24 @@ export default {
   color: #0066CC;
   font-size: 18px;
   font-weight: 600;
+  vertical-align: top;
 }
 .index-news-c-i-w-m{
   display: inline-block;
   height: 42px;
-  line-height: 42px;
-  color: #0066CC;
+  padding-top: 8px;
+  /* color: #0066CC; */
+  color: #666;
   font-size: 14px;
+}
+.index-news-c-i-w-m a{
+  color: #666;
+}
+.index-news-c-i-w-m:hover a{
+  color: #0066CC;
+}
+.index-news-c-i-w-m:hover i{
+  color: #0066CC!important;
 }
 .index-news-content-items{
   width: 100%;
