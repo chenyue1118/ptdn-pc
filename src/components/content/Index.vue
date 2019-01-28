@@ -43,7 +43,7 @@
               </div>
             </div>
             <ul class="index-news-content-items">
-              <li class="index-news-content-item" v-for="(item, index) in listData" :key="index" v-if="index < 4">
+              <li class="index-news-content-item" v-for="(item, index) in listData" :key="index" v-if="index < 4" @click="pushArtilce(item.id)">
                 <span>{{item.title}}</span>
                 <i>{{item.updateDate.substr(0, 10)}}</i>
               </li>
@@ -61,16 +61,16 @@
               </li> -->
             </ul>
           </div>
-          <div class="index-news-content-items-wra"  @click="pushTo(22)">
+          <div class="index-news-content-items-wra">
             <div class="index-news-c-i-w">
               <h3 class="index-news-c-i-w-t">行业新闻</h3>
-              <div class="index-news-c-i-w-m">
+              <div class="index-news-c-i-w-m" @click="pushTo(22)">
                 <a>更多</a>
                 <Icon size=14 color="#666" type="ios-arrow-forward" />
               </div>
             </div>
             <ul class="index-news-content-items">
-              <li class="index-news-content-item" v-for="(item, index) in industry" :key="index" v-if="index < 4">
+              <li class="index-news-content-item" v-for="(item, index) in industry" :key="index" v-if="index < 4" @click="pushArtilce(item.id)">
                 <span>{{item.title}}</span>
                 <i>{{item.updateDate.substr(0, 10)}}</i>
               </li>
@@ -95,14 +95,19 @@
     <div class="index-product">
       <div class="index-product-head">
         <h3 class="index-product-tit">相关产品</h3>
-        <a class="index-product-more">查看详情</a>
+        <a class="index-product-more" @click="pushTo(31)">查看详情</a>
       </div>
       <div class="index-product-body">
-        <div class="index-product-banner">
+        <div class="index-product-banner" v-if="deData.length > 0">
           <img src="../../common/image/scenery002.jpg">
         </div>
         <ul class="index-product-lists">
-          <li class="index-product-list">
+          <li class="index-product-list" v-for="(item, index) in deData" :key="index" @click="proDetail(item.id)">
+            <img class="index-product-list-img" src="../../common/image/scenery003.jpg" >
+            <h5>{{item.typeName}}</h5>
+            <span>{{item.title}}</span>
+          </li>
+          <!-- <li class="index-product-list">
             <img class="index-product-list-img" src="../../common/image/scenery003.jpg" >
             <h5>1234项目</h5>
             <span>这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍...</span>
@@ -111,12 +116,7 @@
             <img class="index-product-list-img" src="../../common/image/scenery003.jpg" >
             <h5>1234项目</h5>
             <span>这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍...</span>
-          </li>
-          <li class="index-product-list">
-            <img class="index-product-list-img" src="../../common/image/scenery003.jpg" >
-            <h5>1234项目</h5>
-            <span>这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍这个是项目介绍...</span>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
@@ -128,7 +128,13 @@
         </div>
       </div>
       <ul class="index-project-body">
-        <li class="index-project-item">
+        <li class="index-project-item" v-for="(item ,index) in caseData" :key="index">
+          <img src="../../common/image/scenery003.jpg" alt="">
+          <h5>{{item.typeName}}</h5>
+          <span>项目简介<br>{{item.title}}</span>
+          <a @click="proDetail(item.id)">进一步了解</a>
+        </li>
+        <!-- <li class="index-project-item">
           <img src="../../common/image/scenery003.jpg" alt="">
           <h5>123项目</h5>
           <span>项目简介<br>项目简介项目简介项目简介项目简介</span>
@@ -145,13 +151,7 @@
           <h5>123项目</h5>
           <span>项目简介<br>项目简介项目简介项目简介项目简介</span>
           <a>进一步了解</a>
-        </li>
-        <li class="index-project-item">
-          <img src="../../common/image/scenery003.jpg" alt="">
-          <h5>123项目</h5>
-          <span>项目简介<br>项目简介项目简介项目简介项目简介</span>
-          <a>进一步了解</a>
-        </li>
+        </li> -->
       </ul>
     </div>
     <!-- list tag -->
@@ -214,7 +214,7 @@ import axios from 'axios'
 import qs from 'qs'
 import Marquee from 'vue-marquee'
 import { Message } from 'iview'
-// import { APIYRL } from '@/common/api/api'
+import { APIYRL } from '@/common/api/api'
 export default {
   data () {
     return {
@@ -233,7 +233,10 @@ export default {
       // 公司新闻
       listData: [],
       // 行业新闻
-      industry: []
+      industry: [],
+      // 相关产品
+      deData: [],
+      caseData: []
     }
   },
   created () {
@@ -241,6 +244,8 @@ export default {
       this._getBanner()
       this._getList()
       this._getIndustry()
+      this._getProduct()
+      this._getCase()
     }, 20)
   },
   methods: {
@@ -249,7 +254,8 @@ export default {
         'rollingType': 1
       })
       // axios(`${APIYRL}/rolling.do?method=showRollingPicture`, {
-      axios(`http://139.129.203.44:8680/rolling.do?method=showRollingPicture`, {
+      // axios(`http://139.129.203.44:8680/rolling.do?method=showRollingPicture`, {
+      axios(`${APIYRL}/rolling.do?method=showRollingPicture`, {
         method: 'GET',
         data: articleInfo
       }).then(response => {
@@ -262,7 +268,7 @@ export default {
     },
     _getList () {
       // axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=21&pageSize=10&pageNo=1`, {
-      axios(`http://139.129.203.44:8680/articleInfo.do?method=articleList&search_type=21&pageSize=10&pageNo=1`, {
+      axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=21&pageSize=10&pageNo=1`, {
         method: 'GET'
       }).then(response => {
         if (response.data.code === 0) {
@@ -274,7 +280,7 @@ export default {
     },
     _getIndustry () {
       // axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=21&pageSize=10&pageNo=1`, {
-      axios(`http://139.129.203.44:8680/articleInfo.do?method=articleList&search_type=22&pageSize=10&pageNo=1`, {
+      axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=22&pageSize=10&pageNo=1`, {
         method: 'GET'
       }).then(response => {
         if (response.data.code === 0) {
@@ -292,9 +298,9 @@ export default {
             id: index
           }
         })
-      } else if (index === 22) {
+      } else if (index === 31) {
         this.$router.push({
-          path: '/news/dynamics'
+          path: '/exhibition'
         })
       } else if (index === 3) {
         this.$router.push({
@@ -306,117 +312,49 @@ export default {
         })
       }
     },
-    // _getNoticeBulletin () {
-    //   let newsInfo = qs.stringify({
-    //     'method': 'articleListNumber',
-    //     'search_type': 23,
-    //     'search_number': 3
-    //   })
-    //   axios(`${APIYRL}/articleInfo.do`, {
-    //     method: 'POST',
-    //     data: newsInfo
-    //   }).then(response => {
-    //     if (response.data.code === 0) {
-    //       this.noticeBulletin = response.data.result
-    //     } else {
-    //       Message.info('查询失败')
-    //     }
-    //   })
-    // },
-    // _getOurNews () {
-    //   let newsInfo = qs.stringify({
-    //     'method': 'articleListNumber',
-    //     'search_type': 22,
-    //     'search_number': 4
-    //   })
-    //   axios(`${APIYRL}/articleInfo.do`, {
-    //     method: 'POST',
-    //     data: newsInfo
-    //   }).then(response => {
-    //     if (response.data.code === 0) {
-    //       this.ourNews = response.data.result
-    //     } else {
-    //       Message.info('查询失败')
-    //     }
-    //   })
-    // },
-    // _getPublicResource () {
-    //   let newsInfo = qs.stringify({
-    //     'method': 'articleListNumber',
-    //     'search_type': 51,
-    //     'search_number': 4
-    //   })
-    //   axios(`${APIYRL}/articleInfo.do`, {
-    //     method: 'POST',
-    //     data: newsInfo
-    //   }).then(response => {
-    //     if (response.data.code === 0) {
-    //       this.publicResource = response.data.result
-    //     } else {
-    //       Message.info('查询失败')
-    //     }
-    //   })
-    // },
-    // _getPersonnelTrain () {
-    //   let newsInfo = qs.stringify({
-    //     'method': 'articleListNumber',
-    //     'search_type': 42,
-    //     'search_number': 4
-    //   })
-    //   axios(`${APIYRL}/articleInfo.do`, {
-    //     method: 'POST',
-    //     data: newsInfo
-    //   }).then(response => {
-    //     if (response.data.code === 0) {
-    //       this.personnelTrain = response.data.result
-    //     } else {
-    //       Message.info('查询失败')
-    //     }
-    //   })
-    // },
-    // _getCollegeScenery () {
-    //   let articleInfo = qs.stringify({
-    //     'method': 'showRollingPicture',
-    //     'rollingType': 2
-    //   })
-    //   axios(`${APIYRL}/rolling.do`, {
-    //     method: 'POST',
-    //     data: articleInfo
-    //   }).then(response => {
-    //     if (response.data.code === 0) {
-    //       this.collegeScenery = response.data.result.concat(response.data.result)
-    //     } else {
-    //       Message.info('查询失败')
-    //     }
-    //   })
-    // },
-    // pushTo (index) {
-    //   if (index === 1) {
-    //     this.$router.push({
-    //       path: '/news/college'
-    //     })
-    //   } else if (index === 2) {
-    //     this.$router.push({
-    //       path: '/news/dynamics'
-    //     })
-    //   } else if (index === 3) {
-    //     this.$router.push({
-    //       path: '/resource/college'
-    //     })
-    //   } else if (index === 4) {
-    //     this.$router.push({
-    //       path: '/training/enrolment'
-    //     })
-    //   }
-    // },
-    // pushArtilce (id) {
-    //   this.$router.push({
-    //     path: '/article',
-    //     query: {
-    //       id: id
-    //     }
-    //   })
-    // },
+    _getProduct () {
+      axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=31&pageSize=3&pageNo=1`, {
+        method: 'GET'
+      }).then(response => {
+        if (response.data.code === 0) {
+          if (response.data.result.data.length > 0) {
+            this.deData = [...response.data.result.data]
+          }
+        } else {
+          Message.info('查询失败')
+        }
+      })
+    },
+    _getCase () {
+      axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=41&pageSize=4&pageNo=1`, {
+        method: 'GET'
+      }).then(response => {
+        if (response.data.code === 0) {
+          if (response.data.result.data.length > 0) {
+            this.caseData = [...response.data.result.data]
+          }
+        } else {
+          Message.info('查询失败')
+        }
+      })
+    },
+    proDetail (id) {
+      this.$router.push({
+        path: '/ProductDetails',
+        query: {
+          id
+        }
+      })
+    },
+    pushArtilce (id) {
+      this.$router.push({
+        path: '/NewsArticle',
+        query: {
+          id: id,
+          type: 21
+        }
+      })
+    },
     marqueeMouseenter (index) {
       if (index === 2) {
         this.$refs.marqueeCon.stop()
@@ -473,7 +411,7 @@ export default {
   line-height: 60px;
   font-size: 18px;
   color: #0066CC;
-  font-weight: 500;
+  font-weight: 600;
   font-family: "PingFangSC-Medium";
 }
 .index-news-school-con-wra{
@@ -685,9 +623,14 @@ export default {
   line-height: 30px;
   margin-top: 5px;
   text-align: center;
+  background: #fff;
+  color: #333;
+  font-size: 12px;
+  transition: all 0.4s;
+}
+.index-product-more:hover{
   background: #333;
   color: #fff;
-  font-size: 12px;
 }
 .index-product-body{
   padding-top: 10px;
@@ -711,6 +654,8 @@ export default {
   display: inline-block;
   width: 30%;
   margin-left: 5%;
+  cursor: pointer;
+  overflow: hidden;
 }
 .index-product-list:nth-child(1){
   margin-left: 0;
@@ -719,6 +664,11 @@ export default {
   display: block;
   width: 100%;
   height: 100px;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+.index-product-list:hover .index-product-list-img{
+  transform: scale(1.1);
 }
 .index-product-list h5{
   height: 30px;
@@ -727,6 +677,9 @@ export default {
   color: #333;
 }
 .index-product-list span{
+  display: block;
+  height: 56px;
+  overflow: hidden;
   line-height: 20px;
   font-size: 12px;
   color: #666;
@@ -789,6 +742,8 @@ export default {
 }
 .index-project-item span{
   display: block;
+  height: 60px;
+  overflow: hidden;
   padding: 0 10px;
   line-height: 20px;
   font-size: 12px;
@@ -799,6 +754,10 @@ export default {
   padding: 0 10px;
   margin-top: 20px;
   font-size: 14px;
+  color: #444;
+}
+.index-project-item a:hover{
+  color: #2b85e4;
 }
 /* 可以删除 */
 /* .index-news-nav{

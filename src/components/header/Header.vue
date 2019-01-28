@@ -73,6 +73,7 @@ export default {
 .header{
   width: 100%;
   height: 106px;
+  /* background: #fff; */
   background: url(../../common/image/header-bg.jpg) no-repeat center;
   background-size: cover;
 }
@@ -86,9 +87,10 @@ export default {
   display: inline-block;
   width: 495px;
   height: 70px;
-  background: url(../../common/image/icon-logo.png) no-repeat center;
+  /* background: url(../../common/image/icon-logo.png) no-repeat center; */
+  background: url(../../common/image/icon-logo.png) no-repeat center left;
   /* background-size: 495px 70px; */
-  background-size: 92%;
+  /* background-size: 92%; */
   vertical-align: top;
   margin-top: -10px;
 }

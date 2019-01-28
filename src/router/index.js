@@ -10,6 +10,7 @@ import Company from '@/components/content/Company'
 import Product from '@/components/content/Product'
 import Exhibition from '@/components/content/Exhibition'
 import Case from '@/components/content/Case'
+import ProductDetails from '@/components/content/ProductDetails'
 
 import Laboratory from '@/components/content/Laboratory'
 import Training from '@/components/content/Training'
@@ -191,6 +192,10 @@ export default new Router({
       path: '/case',
       name: '产品案例',
       component: Case
+    }, {
+      path: '/productDetails',
+      name: '产品详情',
+      component: ProductDetails
     }
   ]
 })

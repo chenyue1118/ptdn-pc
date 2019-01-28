@@ -1,16 +1,16 @@
 <template lang="html">
   <div class="footer">
     <div class="footer-wra">
-      <h4 class="footer-address">地址：海淀区西北旺东路十号院东区五号楼中关村软件园互联网创新中心</h4>
+      <h4 class="footer-address"></h4>
       <h4 class="footer-address">
-        <span>邮箱：beijing@ustc.edu.cn</span>
+        <span>邮箱：beijing@unxptdn.com</span>
         <span>邮编：100100</span>
       </h4>
       <h4 class="footer-address">
         <span>电话：010-66666666</span>
         <span>传真：010-66666666</span>
       </h4>
-      <h4 class="footer-address footer-address1">版权所有：中国科学技术大学北京研究院</h4>
+      <h4 class="footer-address footer-address1">版权所有：宁夏普天动能信息技术有限公司</h4>
     </div>
   </div>
 </template>

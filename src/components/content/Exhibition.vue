@@ -2,22 +2,22 @@
   <div class="product">
     <h3 class="pro-title">产品展示</h3>
     <div class="pro-nav">
-      <Menu mode="horizontal" theme="light" active-name="0">
-        <MenuItem name="0">
-          全部
-        </MenuItem>
-        <MenuItem name="1">
-          智慧农业
-        </MenuItem>
-        <MenuItem name="2">
-          智慧农业温棚
-        </MenuItem>
-        <MenuItem name="3">
-          智慧农业大田
-        </MenuItem>
-        <MenuItem name="4">
-          智慧农业渔业
-        </MenuItem>
+      <Menu mode="horizontal" theme="light" active-name="31" @on-select ="navSelect">
+          <MenuItem name="0">
+            全部
+          </MenuItem>
+          <MenuItem name="31">
+            智慧农业
+          </MenuItem>
+          <MenuItem name="32">
+            智慧农业温棚
+          </MenuItem>
+          <MenuItem name="33">
+            智慧农业大田
+          </MenuItem>
+          <MenuItem name="34">
+            智慧农业渔业
+          </MenuItem>
       </Menu>
     </div>
     <div class="pro-search">
@@ -29,7 +29,13 @@
       <li class="pro-popular-item">最新</li>
     </ul>
     <ul class="pro-lists">
-      <li class="pro-list">
+      <li class="pro-list" v-for="(item, index) in deData" :key="index">
+        <img class="pro-list-image" src="../../common/image/scenery001.jpg" alt="">
+        <span class="pro-list-tit">{{item.title}}</span>
+        <span class="pro-list-desc">项目介绍 <br /> {{item.description}}</span>
+        <a class="pro-list-link" @click="_getDetails(item)">进一步了解</a>
+      </li>
+      <!-- <li class="pro-list">
         <img class="pro-list-image" src="../../common/image/scenery001.jpg" alt="">
         <span class="pro-list-tit">123项目</span>
         <span class="pro-list-desc">项目介绍 <br /> 这个是项目介绍这个是项目介绍这个是项目介绍</span>
@@ -46,19 +52,72 @@
         <span class="pro-list-tit">123项目</span>
         <span class="pro-list-desc">项目介绍 <br /> 这个是项目介绍这个是项目介绍这个是项目介绍</span>
         <a class="pro-list-link">进一步了解</a>
-      </li>
-      <li class="pro-list">
-        <img class="pro-list-image" src="../../common/image/scenery001.jpg" alt="">
-        <span class="pro-list-tit">123项目</span>
-        <span class="pro-list-desc">项目介绍 <br /> 这个是项目介绍这个是项目介绍这个是项目介绍</span>
-        <a class="pro-list-link">进一步了解</a>
-      </li>
+      </li> -->
     </ul>
+    <div class="no-data" v-if="deData.length == 0">
+      暂无数据
+    </div>
+    <div class="new-page" v-if="total > 0">
+      <Page :current="current" :total="total" @on-change="_getCurr"></Page>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+// import qs from 'qs'
+import { Message } from 'iview'
+import { APIYRL } from '@/common/api/api'
+
 export default {
+  data () {
+    return {
+      index: 31,
+      navType: '1',
+      deData: [],
+      current: 1,
+      total: 0
+    }
+  },
+  created () {
+    setTimeout(() => {
+      this._getLists()
+    }, 20)
+  },
+  methods: {
+    _getLists (name) {
+      if (name) this.index = name
+      axios(`${APIYRL}/articleInfo.do?method=articleList&search_type=${this.index}&pageSize=10&pageNo=${this.current}`, {
+        method: 'GET'
+      }).then(response => {
+        if (response.data.code === 0) {
+          this.deData.length = 0
+          this.total = response.data.result.totalRows
+          if (response.data.result.data.length > 0) {
+            this.deData = [...response.data.result.data]
+          }
+        } else {
+          Message.info('查询失败')
+        }
+      })
+    },
+    _getDetails (item) {
+      this.$router.push({
+        path: '/ProductDetails',
+        query: {
+          id: item.id
+        }
+      })
+    },
+    _getCurr (curr) {
+      this.current = curr
+      this._getLists()
+    },
+    navSelect (name) {
+      this.current = 1
+      this._getLists(name)
+    }
+  }
 }
 </script>
 
@@ -118,6 +177,7 @@ export default {
   width: 23%;
   margin-left: 2.6%;
   background: #fff;
+  vertical-align: top;
 }
 .pro-list:nth-child(4n+1) {
   margin-left: 0;
@@ -129,18 +189,22 @@ export default {
 .pro-list-tit{
   display: block;
   height: 40px;
-  line-height: 40px;
+  line-height: 20px;
   padding: 0 10px;
+  margin: 10px 0;
   font-size: 14px;
   font-weight: 600;
   color: #333;
+  overflow: hidden;
 }
 .pro-list-desc{
   display: block;
+  height: 66px;
   padding: 0 10px;
   line-height: 22px;
   font-size: 12px;
   color: #666;
+  overflow: hidden;
 }
 .pro-list-link{
   display: block;
@@ -148,5 +212,12 @@ export default {
   padding: 10px;
   font-size: 14px;
   color: #333;
+}
+.new-page{
+  padding: 10px 0;
+  text-align: right;
+}
+.no-data{
+  padding-bottom: 10px;
 }
 </style>

@@ -2,8 +2,8 @@
   <div class="new-art">
     <ul class="new-head">
       <!-- <li class="new-head-item">全部</li> -->
-      <li class="new-head-item" :class="{active: type == 21}">公司新闻</li>
-      <li class="new-head-item" :class="{active: type == 22}">行业资讯</li>
+      <!-- <li class="new-head-item" :class="{active: type == 21}">公司新闻</li>
+      <li class="new-head-item" :class="{active: type == 22}">行业资讯</li> -->
     </ul>
     <div class="article">
       <h4 class="article-title">{{title}}</h4>
