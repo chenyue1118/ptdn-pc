@@ -26,14 +26,14 @@
             <a class="index-news-school-con" href="javascript:;" v-for="(item, index) in listData" :key = "index" @click="pushArtilce(item.id)">{{item.title}}</a>
           </marquee>
         </div>
-        <div class="index-news-school-more">
+        <div class="index-news-school-more" @click="pushTo(21)">
           <span>更多</span>
           <Icon size=14 color="#666" type="ios-arrow-forward" />
         </div>
       </div>
       <div class="index-news-content">
         <div class="index-news-content-w">
-          <img class="index-news-content-image" src="../../common/image/scenery001.jpg">
+          <img class="index-news-content-image" src="../../common/image/icon-company.jpg">
           <div class="index-news-content-items-wra">
             <div class="index-news-c-i-w">
               <h3 class="index-news-c-i-w-t">公司新闻</h3>
@@ -99,11 +99,23 @@
       </div>
       <div class="index-product-body">
         <div class="index-product-banner" v-if="deData.length > 0">
-          <img src="../../common/image/scenery002.jpg">
+          <!-- <img :src="deData[0].pictureUrl"> -->
+          <Carousel
+            :autoplay="setting.autoplay"
+            :autoplay-speed="setting.autoplaySpeed"
+            :dots="setting.dots"
+            :radius-dot="setting.radiusDot"
+            :trigger="setting.trigger"
+            :arrow="setting.arrow"
+            easing="ease">
+              <CarouselItem v-for="(item, index) in deData" :key=index>
+                <img :src="item.pictureUrl">
+              </CarouselItem>
+          </Carousel>
         </div>
         <ul class="index-product-lists">
           <li class="index-product-list" v-for="(item, index) in deData" :key="index" @click="proDetail(item.id)">
-            <img class="index-product-list-img" src="../../common/image/scenery003.jpg" >
+            <img class="index-product-list-img" :src="item.pictureUrl" >
             <h5>{{item.typeName}}</h5>
             <span>{{item.title}}</span>
           </li>
@@ -129,7 +141,8 @@
       </div>
       <ul class="index-project-body">
         <li class="index-project-item" v-for="(item ,index) in caseData" :key="index">
-          <img src="../../common/image/scenery003.jpg" alt="">
+          <img v-if="item.pictureUrl" :src="item.pictureUrl" >
+          <img v-else src="../../common/image/icon-more-news.jpg">
           <h5>{{item.typeName}}</h5>
           <span>项目简介<br>{{item.title}}</span>
           <a @click="proDetail(item.id)">进一步了解</a>
@@ -667,8 +680,8 @@ export default {
   overflow: hidden;
   transition: all 0.4s;
 }
-.index-product-list:hover .index-product-list-img{
-  transform: scale(1.1);
+.index-product-list:hover h5, .index-product-list:hover span{
+  color: #4C8AFE;
 }
 .index-product-list h5{
   height: 30px;

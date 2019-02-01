@@ -3,9 +3,9 @@
     <h3 class="pro-title">产品案例</h3>
     <div class="pro-nav">
       <Menu mode="horizontal" theme="light" active-name="41" @on-select ="navSelect">
-          <MenuItem name="0">
+          <!-- <MenuItem name="0">
             全部
-          </MenuItem>
+          </MenuItem> -->
           <MenuItem name="41">
             智慧农业
           </MenuItem>
@@ -20,9 +20,9 @@
           </MenuItem>
       </Menu>
     </div>
-    <div class="pro-search">
+    <!-- <div class="pro-search">
       <Input search placeholder="Enter something..." />
-    </div>
+    </div> -->
     <ul class="pro-popular">
       <li class="pro-popular-item active">推荐</li>
       <li class="pro-popular-item">热门</li>
@@ -30,7 +30,7 @@
     </ul>
     <ul class="pro-lists">
       <li class="pro-list" v-for="(item, index) in deData" :key="index">
-        <img class="pro-list-image" src="../../common/image/scenery001.jpg" alt="">
+        <img class="pro-list-image" src="../../common/image/icon-more-news.jpg" alt="">
         <span class="pro-list-tit">{{item.title}}</span>
         <span class="pro-list-desc">项目介绍 <br /> {{item.description}}</span>
         <a class="pro-list-link" @click="_getDetails(item)">进一步了解</a>

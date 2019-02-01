@@ -1,4 +1,4 @@
-# yanjiu
+# PC
 
 > A Vue.js project
 

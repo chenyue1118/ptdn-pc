@@ -1,14 +1,15 @@
 <template lang="html">
   <div class="new_">
     <ul class="new-head">
-      <li class="new-head-item">全部</li>
+      <!-- <li class="new-head-item">全部</li> -->
       <li class="new-head-item" :class="{active: index == 21}" @click="_getNews(21, 1)">公司新闻</li>
       <li class="new-head-item" :class="{active: index == 22}" @click="_getNews(22, 1)">行业资讯</li>
     </ul>
     <ul class="new-body">
       <li class="new-body-item" @click="newArticle(item)" v-for="(item, index) in newList" :key="index">
         <div class="new-body-item-img">
-          <img src="../../common/image/scenery002.jpg">
+          <img v-if="item.pictureUrl" :src="item.pictureUrl" :onerror="imageError">
+          <img v-else src="../../common/image/icon-more-news.jpg" :onerror="imageError">
         </div>
         <div class="new-body-item-con">
           <h5>{{item.title}}</h5>
@@ -45,7 +46,8 @@ export default {
       index: 21,
       newList: [],
       current: 1,
-      total: 1
+      total: 1,
+      imageError: `this.src="../../common/image/icon-more-news.jpg"`
     }
   },
   // created () {
@@ -109,7 +111,8 @@ export default {
 .new-head-item{
   display: inline-block;
   padding-right: 14px;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
 }
 .new-head .active{
@@ -141,6 +144,9 @@ export default {
 .new-body-item-con h5{
   height: 40px;
   font-size: 16px;
+}
+.new-body-item-con h5:hover{
+  color: #0066CC;
 }
 .new-body-item-con span{
   display: block;

@@ -82,7 +82,8 @@ export default {
 .new-head-item{
   display: inline-block;
   padding-right: 14px;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
 }
 .new-head .active{
