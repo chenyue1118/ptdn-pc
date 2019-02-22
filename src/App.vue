@@ -19,6 +19,8 @@
 import MHeader from './components/header/Header'
 import Footer from './components/footer/Footer'
 import Tab from './components/tab/Tab'
+import 'babel-polyfill'
+
 export default {
   name: 'App',
   data () {

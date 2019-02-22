@@ -3,23 +3,28 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import {Carousel, CarouselItem, Icon, Page, Alert, Spin, BackTop, Menu, MenuItem, Submenu, MenuGroup, Input} from 'iview'
+// import {Carousel, CarouselItem, Icon, Page, Alert, Spin, BackTop, Menu, MenuItem, Submenu, MenuGroup, Input} from 'iview'
+import Iview from 'iview'
 import 'iview/dist/styles/iview.css'
 import VueAMap from 'vue-amap'
+import 'babel-polyfill'
+import promise from 'es6-promise'
+promise.polyfill()
 
-Vue.component('Carousel', Carousel)
-Vue.component('CarouselItem', CarouselItem)
-Vue.component('Icon', Icon)
-Vue.component('Page', Page)
-Vue.component('Alert', Alert)
-Vue.component('Spin', Spin)
-Vue.component('BackTop', BackTop)
-Vue.component('Menu', Menu)
-Vue.component('MenuItem', MenuItem)
-Vue.component('Submenu', Submenu)
-Vue.component('MenuGroup', MenuGroup)
-Vue.component('Input', Input)
+// Vue.component('Carousel', Carousel)
+// Vue.component('CarouselItem', CarouselItem)
+// Vue.component('Icon', Icon)
+// Vue.component('Page', Page)
+// Vue.component('Alert', Alert)
+// Vue.component('Spin', Spin)
+// Vue.component('BackTop', BackTop)
+// Vue.component('Menu', Menu)
+// Vue.component('MenuItem', MenuItem)
+// Vue.component('Submenu', Submenu)
+// Vue.component('MenuGroup', MenuGroup)
+// Vue.component('Input', Input)
 
+Vue.use(Iview)
 Vue.use(VueAMap)
 VueAMap.initAMapApiLoader({
   key: 'd5b50c05b6441fc8b4a6aae2ba31d77e',
