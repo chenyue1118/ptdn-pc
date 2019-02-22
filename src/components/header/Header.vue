@@ -3,7 +3,7 @@
     <div class="header-wra">
        <div class="header-logo"></div>
        <div class="header-con">
-         <div class="header-con-w">
+         <div class="header-con-w" @click="location">
            <i></i>
            <span>智慧农业物联网平台</span>
          </div>
@@ -64,6 +64,9 @@ export default {
           id: this.searchCon
         }
       })
+    },
+    location () {
+      window.location.replace('http://47.104.98.20:8080/')
     }
   }
 }
@@ -99,6 +102,9 @@ export default {
   height: 70px;
   padding-left: 150px;
   font-size: 0;
+}
+.header-con-w{
+  cursor: pointer;
 }
 .header-con-w, .header-con-k{
   display: inline-block;
