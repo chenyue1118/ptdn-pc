@@ -66,7 +66,7 @@ export default {
       })
     },
     location () {
-      window.location.replace('http://47.104.98.20:8080/')
+      window.location.replace('http://yun.nxptdn.com')
     }
   }
 }
