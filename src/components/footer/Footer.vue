@@ -3,12 +3,12 @@
     <div class="footer-wra">
       <h4 class="footer-address"></h4>
       <h4 class="footer-address">
-        <span>邮箱：beijing@unxptdn.com</span>
-        <span>邮编：100100</span>
+        <span>邮箱：liangliang@nxptdn.com</span>
+        <span>750001</span>
       </h4>
       <h4 class="footer-address">
-        <span>电话：010-66666666</span>
-        <span>传真：010-66666666</span>
+        <span>电话：0951-8305007 15378972980 </span>
+        <span>传真：0951-8305007</span>
       </h4>
       <h4 class="footer-address footer-address1">版权所有：宁夏普天动能信息技术有限公司</h4>
     </div>

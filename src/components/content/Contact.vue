@@ -14,16 +14,16 @@
           <!-- 院办公室 -->
         </div>
         <div class="contact-item-con">
-          地址： <span> 北京市海淀区西北旺东路10号院5号楼</span>
+          地址： <span> 银川市金凤区正源南街IBM</span>
         </div>
         <div class="contact-item-con">
-          邮编：<span>100193</span>
+          邮编：<span>750001</span>
         </div>
         <div class="contact-item-con">
-          电话： <span> </span>
+          电话： <span>0951-8305007  15378972980</span>
         </div>
         <div class="contact-item-con">
-          邮箱： <span>ustc-bj@ustc-bj.cn</span>
+          邮箱： <span>liangliang@nxptdn.com</span>
         </div>
       </div>
       <!-- <div class="contact-img-wra">
@@ -31,7 +31,7 @@
       </div> -->
       <div class="amap-wrapper" id="container">
         <el-amap :center="center" :zoom="zoom" class="amap-box" :vid="'VueAMap'">
-          <el-amap-info-window :position="center" content="中国科学技术大学北京研究院"></el-amap-info-window>
+          <el-amap-info-window :position="center" content="宁夏普天动能信息技术有限公司"></el-amap-info-window>
         </el-amap>
       </div>
       <div class="amap-Look-big" @click="lookMap">
@@ -45,13 +45,13 @@
 export default {
   data () {
     return {
-      center: [116.2798960000, 40.0475350000],
+      center: [106.2460800000, 38.4607500000],
       zoom: 12
     }
   },
   methods: {
     lookMap () {
-      window.open('http://map.baidu.com/?latlng=40.0538668975,116.2862520561&title=中国科学技术大学北京研究院&content=北京市海淀区西北旺东路10号院5号楼')
+      window.open('http://map.baidu.com/?latlng=38.4664307862,106.2526700167&title=宁夏普天动能信息技术有限公司&content=银川市金凤区正源南街IBM')
     }
   }
 }
