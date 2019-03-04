@@ -10,13 +10,13 @@
             智慧农业
           </MenuItem>
           <MenuItem name="32">
-            智慧农业温棚
-          </MenuItem>
-          <MenuItem name="33">
             智慧农业大田
           </MenuItem>
-          <MenuItem name="34">
+          <MenuItem name="33">
             智慧农业渔业
+          </MenuItem>
+          <MenuItem name="34">
+            智慧农业温棚
           </MenuItem>
       </Menu>
     </div>
@@ -178,13 +178,17 @@ export default {
   margin-left: 2.6%;
   background: #fff;
   vertical-align: top;
+  margin-bottom: 10px;
 }
 .pro-list:nth-child(4n+1) {
   margin-left: 0;
 }
 .pro-list-image{
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
+  max-height: 140px;
+  margin: 10px auto;
 }
 .pro-list-tit{
   display: block;
