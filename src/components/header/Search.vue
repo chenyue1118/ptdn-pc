@@ -48,7 +48,7 @@ export default {
             // response.data.result
             this.title = response.data.result.title
             this.time = response.data.result.createDate.substr(0, 16)
-            this.author = response.data.result.createBy
+            this.author = response.data.result.releaseMan
             this.content = response.data.result.content
           } else {
             Message.info(response.data.msg || '查询出错')

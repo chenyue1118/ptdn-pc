@@ -54,7 +54,7 @@ export default {
         if (response.data.code === 0) {
           this.title = response.data.result.title
           this.time = response.data.result.createDate.substr(0, 16)
-          this.author = response.data.result.createBy
+          this.author = response.data.result.releaseMan
           this.content = response.data.result.content
         } else {
           Message.info('查询失败')
