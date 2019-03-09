@@ -250,7 +250,7 @@ export default {
       // 相关产品
       deData: [],
       caseData: [],
-      listDataUrl: '../../common/image/icon-company.jpg'
+      listDataUrl: ''
     }
   },
   created () {
