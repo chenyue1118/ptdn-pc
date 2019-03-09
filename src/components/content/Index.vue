@@ -33,7 +33,7 @@
       </div>
       <div class="index-news-content">
         <div class="index-news-content-w">
-          <img class="index-news-content-image" src="../../common/image/icon-company.jpg">
+          <img class="index-news-content-image" :src="listDataUrl">
           <div class="index-news-content-items-wra">
             <div class="index-news-c-i-w">
               <h3 class="index-news-c-i-w-t">公司新闻</h3>
@@ -45,7 +45,7 @@
             <ul class="index-news-content-items">
               <li class="index-news-content-item" v-for="(item, index) in listData" :key="index" v-if="index < 4" @click="pushArtilce(item.id)">
                 <span>{{item.title}}</span>
-                <i>{{item.updateDate.substr(0, 10)}}</i>
+                <i>{{item.createDate.substr(0, 10)}}</i>
               </li>
               <!-- <li class="index-news-content-item">
                 <span>研究院学术资料等等</span>
@@ -72,7 +72,7 @@
             <ul class="index-news-content-items">
               <li class="index-news-content-item" v-for="(item, index) in industry" :key="index" v-if="index < 4" @click="pushArtilce(item.id)">
                 <span>{{item.title}}</span>
-                <i>{{item.updateDate.substr(0, 10)}}</i>
+                <i>{{item.createDate.substr(0, 10)}}</i>
               </li>
               <!-- <li class="index-news-content-item">
                 <span>研究院学术资料等等</span>
@@ -249,7 +249,8 @@ export default {
       industry: [],
       // 相关产品
       deData: [],
-      caseData: []
+      caseData: [],
+      listDataUrl: '../../common/image/icon-company.jpg'
     }
   },
   created () {
@@ -286,6 +287,7 @@ export default {
       }).then(response => {
         if (response.data.code === 0) {
           this.listData = response.data.result.data
+          this.listDataUrl = this.listData[0].pictureUrl
         } else {
           Message.info('查询失败')
         }

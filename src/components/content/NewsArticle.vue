@@ -2,8 +2,8 @@
   <div class="new-art">
     <ul class="new-head">
       <!-- <li class="new-head-item">全部</li> -->
-      <li class="new-head-item" :class="{active: type == 21}">公司新闻</li>
-      <li class="new-head-item" :class="{active: type == 22}">行业资讯</li>
+      <li class="new-head-item" :class="{active: type == 21}" @click="_getNews(21)">公司新闻</li>
+      <li class="new-head-item" :class="{active: type == 22}" @click="_getNews(22)">行业资讯</li>
     </ul>
     <div class="article">
       <h4 class="article-title">{{title}}</h4>
@@ -55,9 +55,17 @@ export default {
           this.title = response.data.result.title
           this.time = response.data.result.createDate.substr(0, 16)
           this.author = response.data.result.releaseMan
-          this.content = response.data.result.content
+          this.content = response.data.result.content.replace('<pre', '<div').replace('pre>', 'pre>')
         } else {
           Message.info('查询失败')
+        }
+      })
+    },
+    _getNews (index) {
+      this.$router.push({
+        path: '/news',
+        query: {
+          id: index
         }
       })
     }
