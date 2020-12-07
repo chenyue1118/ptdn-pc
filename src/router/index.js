@@ -1,201 +1,207 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import Index from '@/components/content/Index'
-import Article from '@/components/content/Article'
-import Survey from '@/components/content/Survey'
-import News from '@/components/content/News'
-import NewsArticle from '@/components/content/NewsArticle'
-import Company from '@/components/content/Company'
+import VueRouter from 'vue-router'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
-import Product from '@/components/content/Product'
-import Exhibition from '@/components/content/Exhibition'
-import Case from '@/components/content/Case'
-import ProductDetails from '@/components/content/ProductDetails'
+import Layout from '@/views/layout/index.vue'
+import Label from '@/views/layout/label.vue'
+// import Label from '@/layout/label.vue'
+import { getToken } from '@/utils/auth.js'
 
-import Laboratory from '@/components/content/Laboratory'
-import Training from '@/components/content/Training'
-import Resource from '@/components/content/Resource'
-import Download from '@/components/content/Download'
-import Contact from '@/components/content/Contact'
+Vue.use(VueRouter)
 
-import College from '@/components/content/survey/College'
-import Organization from '@/components/content/survey/Organization'
-import Colleges from '@/components/content/survey/Colleges'
-import Regional from '@/components/content/survey/Regional'
-import TalentInfo from '@/components/content/survey/Talent'
+/*
+ * hasShow: 一级路由是否展示，默认不展示
+ * navShow: 下属一级只有一个菜单  直接显示名称
+ * hidden: 下属一级只有一个菜单   判断menu 的 active
+ */
 
-// import NewsCollege from '@/components/content/news/College'
-// import Dynamics from '@/components/content/news/Dynamics'
-// import Notice from '@/components/content/news/Notice'
+const routes = [
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login.vue')
+  }, {
+    path: '/',
+    name: 'index',
+    redirect: '/path1'
+  }, {
+    path: '/path1',
+    name: 'path1',
+    meta: {
+      title: '业务中心',
+      hasShow: true
+    },
+    redirect: '/path1/child1',
+    component: Layout,
+    children: [
+      {
+        path: 'child1',
+        meta: {
+          title: '车场管理',
+          navShow: true
+        },
+        redirect: '/path1/child1/child1-1',
+        component: Label,
+        children: [
+          {
+            path: 'child1-1',
+            name: 'child1-1',
+            meta: {
+              title: '我的车场'
+            },
+            component: () => import('@/views/test/child1-1.vue')
+          }, {
+            path: 'child1-2',
+            name: 'child1-2',
+            meta: {
+              title: '项目管理'
+            },
+            component: () => import('@/views/test/child1-2.vue')
+          }
+        ]
+      }, {
+        path: 'child2',
+        meta: {
+          title: '机构管理',
+          navShow: false
+        },
+        redirect: '/path1/child2/child2-1',
+        component: Label,
+        children: [
+          {
+            path: 'child2-1',
+            name: 'child2-2',
+            meta: {
+              title: '页面1-页面2-子页面1',
+              hidden: true,
+              activeMenu: '/path1/child2'
+            },
+            component: () => import('@/views/test/child1-1.vue')
+          }
+        ]
+      }
+    ]
+  }, {
+    path: '/path2',
+    name: 'path2',
+    meta: {
+      title: '运营中心',
+      hasShow: true
+    },
+    component: Layout,
+    children: [
+      {
+        path: 'child2',
+        component: Label,
+        children: [
+          {
+            path: 'child2-1',
+            name: 'child2-1',
+            meta: {
+              title: '商户管理'
+            },
+            component: () => import('@/views/test/child1-1.vue')
+          }
+        ]
+      }
+    ]
+  }, {
+    path: '/account-center',
+    name: 'accountCenter',
+    meta: {
+      title: '账户中心',
+      hasShow: true
+    },
+    redirect: '/account-center/account-manage',
+    component: Layout,
+    children: [
+      {
+        path: 'account-manage',
+        meta: {
+          title: '账户管理',
+          navShow: false
+        },
+        redirect: '/account-center/account-manage/index',
+        component: Label,
+        children: [
+          {
+            path: 'index',
+            name: 'accountManage',
+            meta: {
+              title: '账户管理列表',
+              hidden: true,
+              activeMenu: '/account-center/account-manage'
+            },
+            component: () => import('@/views/account-center/account-manage/index.vue')
+          }
+        ]
+      }, {
+        path: 'personal',
+        meta: {
+          title: '个人中心',
+          navShow: true
+        },
+        redirect: '/account-center/personal/user-info',
+        component: Label,
+        children: [
+          {
+            path: 'user-info',
+            name: 'userInfo',
+            meta: {
+              title: '个人信息'
+            },
+            component: () => import('@/views/test/child1-1.vue')
+          }, {
+            path: 'edit-pass',
+            name: 'ediaPass',
+            meta: {
+              title: '修改密码'
+            },
+            component: () => import('@/views/test/child1-1.vue')
+          }
+        ]
+      }
+    ]
+  }
+]
 
-import Introduction from '@/components/content/laboratory/Introduction'
-import Research from '@/components/content/laboratory/Research'
-import Scientific from '@/components/content/laboratory/Scientific'
+// const Domain = ['login', 'test', 'child1-1', 'child1-2', 'child1-3', 'child2-1', 'child2-2']
 
-import Enrolment from '@/components/content/training/Enrolment'
-import Talent from '@/components/content/training/Talent'
-
-import ReCollege from '@/components/content/resource/College'
-import ReDynamics from '@/components/content/resource/Dynamics'
-
-import SearchList from '@/components/header/SearchList'
-import Search from '@/components/header/search'
-
-Vue.use(Router)
-
-export default new Router({
+const router = new VueRouter({
   // mode: 'history',
-  routes: [
-    {
-      path: '/',
-      redirect: '/index'
-    }, {
-      path: '/index',
-      name: '首页',
-      component: Index
-    }, {
-      path: '/survey',
-      // 研究院概括
-      name: '',
-      component: Survey,
-      children: [
-        {
-          path: '/',
-          redirect: '/survey/college'
-        }, {
-          path: 'college',
-          name: '学院简介',
-          component: College
-        }, {
-          path: 'organization',
-          name: '机构组织',
-          component: Organization
-        }, {
-          path: 'colleges',
-          name: '学院风光',
-          component: Colleges
-        }, {
-          path: 'regional',
-          name: '区域地图',
-          component: Regional
-        }, {
-          path: 'talent',
-          name: '人才信息',
-          component: TalentInfo
-        }
-      ]
-    }, {
-      path: '/news',
-      // 新闻
-      name: '',
-      component: News
-    }, {
-      path: '/NewsArticle',
-      // 新闻详情
-      name: '',
-      component: NewsArticle
-    }, {
-      path: '/company',
-      // 公司简介
-      name: '',
-      component: Company
-    }, {
-      path: '/laboratory',
-      // 联合实验室
-      name: '',
-      component: Laboratory,
-      children: [
-        {
-          path: '/',
-          redirect: '/laboratory/introduction'
-        }, {
-          path: 'introduction',
-          name: '实验室简介',
-          component: Introduction
-        }, {
-          path: 'research',
-          name: '科研项目',
-          component: Research
-        }, {
-          path: 'scientific',
-          name: '科研成果',
-          component: Scientific
-        }
-      ]
-    }, {
-      path: '/training',
-      // 人才培养
-      name: '',
-      component: Training,
-      children: [
-        {
-          path: '/',
-          redirect: '/training/enrolment'
-        }, {
-          path: 'enrolment',
-          name: '招生信息',
-          component: Enrolment
-        }, {
-          path: 'talent',
-          name: '人才招聘',
-          component: Talent
-        }
-      ]
-    }, {
-      path: '/resource',
-      // 公共资源
-      name: '',
-      component: Resource,
-      children: [
-        {
-          path: '/',
-          redirect: '/resource/college'
-        }, {
-          path: 'college',
-          name: '校区服务',
-          component: ReCollege
-        }, {
-          path: 'dynamics',
-          name: '科大资源',
-          component: ReDynamics
-        }
-      ]
-    }, {
-      path: '/download',
-      name: '文件下载',
-      component: Download
-    }, {
-      path: '/contact',
-      name: '联系我们',
-      component: Contact
-    }, {
-      path: '/article',
-      name: '文章详情',
-      component: Article
-    }, {
-      path: '/searchList',
-      name: '搜索列表',
-      component: SearchList
-    }, {
-      path: '/search',
-      name: '搜索',
-      component: Search
-    }, {
-      path: '/exhibition',
-      name: '产品展示',
-      component: Exhibition
-    }, {
-      path: '/product',
-      name: '产品',
-      component: Product
-    }, {
-      path: '/case',
-      name: '产品案例',
-      component: Case
-    }, {
-      path: '/productDetails',
-      name: '产品详情',
-      component: ProductDetails
+  base: process.env.BASE_URL,
+  // 路由跳转后，滚动条回到顶部
+  scrollBehavior: ({ savedPosition }) => {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
     }
-  ]
+  },
+  routes
 })
+
+router.beforeEach((to, from, next) => {
+  // Start progress bar
+  NProgress.start()
+  const TOKEN = getToken()
+  // if (!TOKEN && !Domain.includes(to.name)) {
+  if (TOKEN) {
+    next({
+      name: 'login'
+    })
+  } else {
+    next()
+  }
+})
+
+router.afterEach(() => {
+  // Finish progress bar
+  NProgress.done()
+
+  // set page title
+  // document.title = `${TITLE}-${to.meta.title || '' }`
+})
+
+export default router

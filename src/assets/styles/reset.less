@@ -1,0 +1,118 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+html, body, div, p, span, img, a ,ul, li, i, dl, dt, dd, h1, h2, h3, h4, h5, h6, table, caption, tbody, tfoot, thead, tr, th, td, form, label {
+  box-sizing: border-box;
+}
+
+input:focus, select, select:focus, option, option:focus {
+  outline: none;
+}
+a {
+  color: #409EFF;
+  cursor: pointer;
+  text-decoration-line: none;
+  text-decoration: none;
+}
+
+
+/*
+ * 基础容器
+ */
+ .basics-wrapper {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+ }
+ .basics-container {
+   flex: 1 0 auto;
+   width: 100%;
+   border: 6px solid #edf0f4;
+   padding: 10px;
+   .container-table {
+     width: 100%;
+   }
+ }
+
+ /*
+  *
+  */
+.el-table .el-table__header th {
+  background: #f2f2f2;
+}
+
+// 统一表格搜索样式
+.query-search {
+  padding: 20px 0;
+  display: flex;
+  background: #fff;
+  .query-items {
+    flex: 1;
+    .query-item {
+      display: flex;
+    }
+    .query-item + .query-item {
+      margin-top: 12px;
+    }
+    .query {
+      flex: 0 0 33%;
+      // padding-right: 12px;
+      display: flex;
+      overflow: hidden;
+      .query-name {
+        flex: 0 0 20%;
+        height: 32px;
+        line-height: 32px;
+        padding-right: 10px;
+        font-size: 14px;
+        color: #666;
+        text-align: right;
+      }
+      .query-name2 {
+        flex: 0 0 30%;
+      }
+    }
+    .query2 {
+      flex: 0 0 25%;
+      .query-name {
+        flex: 0 0 30%;
+      }
+    }
+    .query3 {
+      flex: 0 0 40%;
+    }
+    .query4 {
+      flex: 0 0 23.3%;
+      .query-name {
+        flex: 0 0 30%;
+      }
+    }
+    .query5 {
+      flex: 0 0 30%;
+      .query-name {
+        flex: 0 0 25%;
+      }
+      .el-date-editor .el-range__close-icon {
+        display: none!important;
+      }
+    }
+  }
+  .search {
+    flex: 0 0 100px;
+    text-align: right;
+    .search-btn {
+      width: 80px;
+    }
+  }
+}
+.all-contnet {
+  padding: 10px;
+  background: #edf0f4;
+  .all-contnet-wrapper {
+    background: #fff;
+    padding: 10px;
+  }
+}
